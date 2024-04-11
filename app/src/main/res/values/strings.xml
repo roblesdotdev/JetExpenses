@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">JetExpenses</string>
+    <string name="app_name">Jet Expenses</string>
+    <string name="app_description">Organize your expenses easily, record payments and stay in control with our app.</string>
+
+    <string name="version_label">Beta version</string>
+    <string name="get_started_label">Get Started</string>
 </resources>
