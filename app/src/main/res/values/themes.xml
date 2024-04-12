@@ -2,4 +2,11 @@
 <resources>
 
     <style name="Theme.JetExpenses" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- SPLASH SCREEN -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/app_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.JetExpenses</item>
+    </style>
 </resources>
