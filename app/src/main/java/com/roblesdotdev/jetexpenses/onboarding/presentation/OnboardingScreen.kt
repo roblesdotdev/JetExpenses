@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,7 +22,16 @@ import com.roblesdotdev.jetexpenses.onboarding.presentation.components.Onboardin
 import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
 
 @Composable
-fun OnboardingScreen(onGetStarted: () -> Unit) {
+fun OnboardingScreen(
+    state: OnboardingState,
+    onEvent: (OnboardingEvent) -> Unit,
+    onGetStarted: () -> Unit,
+) {
+    LaunchedEffect(key1 = state.hasBeenSeen) {
+        if (state.hasBeenSeen) {
+            onGetStarted()
+        }
+    }
     Surface(
         modifier =
             Modifier
@@ -47,7 +57,9 @@ fun OnboardingScreen(onGetStarted: () -> Unit) {
             }
             OnboardingHeader()
             Spacer(modifier = Modifier.height(64.dp))
-            JEButton(text = R.string.get_started_label, onClick = onGetStarted)
+            JEButton(text = R.string.get_started_label, onClick = {
+                onEvent(OnboardingEvent.GetStarted)
+            })
         }
     }
 }
@@ -56,6 +68,6 @@ fun OnboardingScreen(onGetStarted: () -> Unit) {
 @Composable
 private fun OnboardingScreenPreview() {
     JetExpensesTheme {
-        OnboardingScreen(onGetStarted = {})
+        OnboardingScreen(onGetStarted = {}, state = OnboardingState(), onEvent = {})
     }
 }
