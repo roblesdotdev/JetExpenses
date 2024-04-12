@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.daggerHiltAndroid)
+    alias(libs.plugins.googleDevtoolsKsp)
 }
 
 android {
@@ -80,6 +82,11 @@ dependencies {
     implementation(libs.androidx.compose.material.icons)
     // Navigation
     implementation(libs.androidx.navigation.compose)
+    // Dagger Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.androidx.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

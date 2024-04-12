@@ -7,7 +7,9 @@ import androidx.navigation.compose.rememberNavController
 import com.roblesdotdev.jetexpenses.navigation.NavigationHost
 import com.roblesdotdev.jetexpenses.navigation.NavigationRoute
 import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
