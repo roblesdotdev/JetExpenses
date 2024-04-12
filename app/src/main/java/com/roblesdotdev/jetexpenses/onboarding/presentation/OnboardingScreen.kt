@@ -21,7 +21,7 @@ import com.roblesdotdev.jetexpenses.onboarding.presentation.components.Onboardin
 import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
 
 @Composable
-fun OnboardingScreen() {
+fun OnboardingScreen(onGetStarted: () -> Unit) {
     Surface(
         modifier =
             Modifier
@@ -47,7 +47,7 @@ fun OnboardingScreen() {
             }
             OnboardingHeader()
             Spacer(modifier = Modifier.height(64.dp))
-            JEButton(text = R.string.get_started_label, onClick = {})
+            JEButton(text = R.string.get_started_label, onClick = onGetStarted)
         }
     }
 }
@@ -56,6 +56,6 @@ fun OnboardingScreen() {
 @Composable
 private fun OnboardingScreenPreview() {
     JetExpensesTheme {
-        OnboardingScreen()
+        OnboardingScreen(onGetStarted = {})
     }
 }
