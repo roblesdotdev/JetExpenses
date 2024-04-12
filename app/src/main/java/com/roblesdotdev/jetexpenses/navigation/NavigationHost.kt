@@ -1,10 +1,10 @@
 package com.roblesdotdev.jetexpenses.navigation
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.roblesdotdev.jetexpenses.dashboard.presentation.DashboardScreen
 import com.roblesdotdev.jetexpenses.onboarding.presentation.OnboardingScreen
 
 @Composable
@@ -17,13 +17,13 @@ fun NavigationHost(
             OnboardingScreen(
                 onGetStarted = {
                     navController.popBackStack()
-                    navController.navigate(NavigationRoute.Home.route)
+                    navController.navigate(NavigationRoute.Dashboard.route)
                 },
             )
         }
 
-        composable(NavigationRoute.Home.route) {
-            Text(text = "Home Screen")
+        composable(NavigationRoute.Dashboard.route) {
+            DashboardScreen(onFloatingActionClick = {})
         }
     }
 }
