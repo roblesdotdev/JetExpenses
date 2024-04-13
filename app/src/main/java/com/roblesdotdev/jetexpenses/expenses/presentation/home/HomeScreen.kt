@@ -1,4 +1,4 @@
-package com.roblesdotdev.jetexpenses.dashboard.presentation
+package com.roblesdotdev.jetexpenses.expenses.presentation.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -17,16 +17,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.roblesdotdev.jetexpenses.dashboard.data.dumbExpensesData
-import com.roblesdotdev.jetexpenses.dashboard.presentation.components.AllExpensesHeader
-import com.roblesdotdev.jetexpenses.dashboard.presentation.components.DashboardTopBar
-import com.roblesdotdev.jetexpenses.dashboard.presentation.components.ExpenseItem
-import com.roblesdotdev.jetexpenses.dashboard.presentation.components.TotalCard
+import com.roblesdotdev.jetexpenses.expenses.data.dumbExpensesData
+import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.AllExpensesHeader
+import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.ExpenseItem
+import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.HomeTopAppBar
+import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.TotalCard
 import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
 
 @Composable
-fun DashboardScreen(
-    state: DashboardState,
+fun HomeScreen(
+    state: HomeState,
     onFloatingActionClick: () -> Unit,
     onExpenseClick: (String) -> Unit,
 ) {
@@ -40,7 +40,7 @@ fun DashboardScreen(
             }
         },
         topBar = {
-            DashboardTopBar()
+            HomeTopAppBar()
         },
     ) { paddingValues ->
         LazyColumn(
@@ -82,13 +82,13 @@ fun DashboardScreen(
 
 @Preview
 @Composable
-private fun DashboardScreenPreview() {
+private fun HomeScreenPreview() {
     JetExpensesTheme {
-        DashboardScreen(
+        HomeScreen(
             onFloatingActionClick = {},
             onExpenseClick = {},
             state =
-                DashboardState(
+                HomeState(
                     items = dumbExpensesData,
                 ),
         )

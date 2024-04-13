@@ -1,4 +1,4 @@
-package com.roblesdotdev.jetexpenses.dashboard.presentation.components
+package com.roblesdotdev.jetexpenses.expenses.presentation.home.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardTopBar() {
+fun HomeTopAppBar() {
     TopAppBar(
         colors =
             TopAppBarDefaults.topAppBarColors(
@@ -27,7 +27,7 @@ fun DashboardTopBar() {
             ),
         title = {
             Text(
-                text = "Dashboard",
+                text = "Home",
                 fontSize = 20.sp,
             )
         },

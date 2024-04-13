@@ -1,9 +1,9 @@
-package com.roblesdotdev.jetexpenses.dashboard.presentation
+package com.roblesdotdev.jetexpenses.expenses.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.roblesdotdev.jetexpenses.dashboard.domain.model.Expense
-import com.roblesdotdev.jetexpenses.dashboard.domain.repository.AccessExpensesRepository
+import com.roblesdotdev.jetexpenses.expenses.domain.model.Expense
+import com.roblesdotdev.jetexpenses.expenses.domain.repository.ReadExpensesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,12 +12,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel
+class HomeViewModel
     @Inject
     constructor(
-        private val accessExpensesRepository: AccessExpensesRepository,
+        private val readExpensesRepository: ReadExpensesRepository,
     ) : ViewModel() {
-        private val _state = MutableStateFlow(DashboardState())
+        private val _state = MutableStateFlow(HomeState())
         val state = _state.asStateFlow()
 
         init {
@@ -26,7 +26,7 @@ class DashboardViewModel
 
         private fun getInitialItems() {
             viewModelScope.launch {
-                val items = accessExpensesRepository.getAllExpenses()
+                val items = readExpensesRepository.getAllExpenses()
                 updateState(items)
             }
         }

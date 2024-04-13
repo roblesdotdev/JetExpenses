@@ -13,8 +13,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.roblesdotdev.jetexpenses.dashboard.presentation.DashboardScreen
-import com.roblesdotdev.jetexpenses.dashboard.presentation.DashboardViewModel
+import com.roblesdotdev.jetexpenses.expenses.presentation.home.HomeScreen
+import com.roblesdotdev.jetexpenses.expenses.presentation.home.HomeViewModel
 import com.roblesdotdev.jetexpenses.onboarding.presentation.OnboardingScreen
 import com.roblesdotdev.jetexpenses.onboarding.presentation.OnboardingViewModel
 
@@ -32,22 +32,22 @@ fun NavigationHost(
                 onEvent = onboardingViewModel::onEvent,
                 onGetStarted = {
                     navController.popBackStack()
-                    navController.navigate(NavigationRoute.Dashboard.route)
+                    navController.navigate(NavigationRoute.Home.route)
                 },
             )
         }
 
-        composable(NavigationRoute.Dashboard.route) {
-            val dashboardViewModel: DashboardViewModel = hiltViewModel()
-            val dashboardState by dashboardViewModel.state.collectAsState()
-            DashboardScreen(
+        composable(NavigationRoute.Home.route) {
+            val homeViewModel: HomeViewModel = hiltViewModel()
+            val homeState by homeViewModel.state.collectAsState()
+            HomeScreen(
                 onFloatingActionClick = {
                     navController.navigate(NavigationRoute.EditCreate.route)
                 },
                 onExpenseClick = {
                     navController.navigate(NavigationRoute.EditCreate.route + "?expenseId=$it")
                 },
-                state = dashboardState,
+                state = homeState,
             )
         }
 

@@ -1,10 +1,10 @@
-package com.roblesdotdev.jetexpenses.dashboard.data.repository
+package com.roblesdotdev.jetexpenses.expenses.data.repository
 
-import com.roblesdotdev.jetexpenses.dashboard.data.dumbExpensesData
-import com.roblesdotdev.jetexpenses.dashboard.domain.model.Expense
-import com.roblesdotdev.jetexpenses.dashboard.domain.repository.AccessExpensesRepository
+import com.roblesdotdev.jetexpenses.expenses.data.dumbExpensesData
+import com.roblesdotdev.jetexpenses.expenses.domain.model.Expense
+import com.roblesdotdev.jetexpenses.expenses.domain.repository.ReadExpensesRepository
 
-class AccessExpensesRepositoryImpl : AccessExpensesRepository {
+class ReadExpensesRepositoryImpl : ReadExpensesRepository {
     override suspend fun getAllExpenses(): Result<List<Expense>> {
         return Result.success(dumbExpensesData)
     }

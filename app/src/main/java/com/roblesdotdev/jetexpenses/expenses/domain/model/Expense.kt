@@ -1,4 +1,4 @@
-package com.roblesdotdev.jetexpenses.dashboard.domain.model
+package com.roblesdotdev.jetexpenses.expenses.domain.model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Coffee

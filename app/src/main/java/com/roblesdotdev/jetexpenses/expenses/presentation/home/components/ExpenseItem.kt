@@ -1,4 +1,4 @@
-package com.roblesdotdev.jetexpenses.dashboard.presentation.components
+package com.roblesdotdev.jetexpenses.expenses.presentation.home.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.roblesdotdev.jetexpenses.dashboard.domain.model.Expense
+import com.roblesdotdev.jetexpenses.expenses.domain.model.Expense
 
 @Composable
 fun ExpenseItem(

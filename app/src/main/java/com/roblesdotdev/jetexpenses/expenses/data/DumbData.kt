@@ -1,7 +1,7 @@
-package com.roblesdotdev.jetexpenses.dashboard.data
+package com.roblesdotdev.jetexpenses.expenses.data
 
-import com.roblesdotdev.jetexpenses.dashboard.domain.model.Expense
-import com.roblesdotdev.jetexpenses.dashboard.domain.model.ExpenseCategory
+import com.roblesdotdev.jetexpenses.expenses.domain.model.Expense
+import com.roblesdotdev.jetexpenses.expenses.domain.model.ExpenseCategory
 import kotlin.random.Random
 
 val dumbExpensesData =

@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
 
     private fun getStartDestination(state: MainState): NavigationRoute {
         return if (state.onboardingHasBeenSeen) {
-            NavigationRoute.Dashboard
+            NavigationRoute.Home
         } else {
             NavigationRoute.Onboarding
         }
