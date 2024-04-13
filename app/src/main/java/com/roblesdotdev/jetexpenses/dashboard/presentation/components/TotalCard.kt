@@ -2,7 +2,6 @@ package com.roblesdotdev.jetexpenses.dashboard.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -17,11 +16,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TotalCard(total: Double) {
+fun TotalCard(
+    modifier: Modifier = Modifier,
+    total: Double,
+) {
     Surface(
-        modifier =
-            Modifier
-                .fillMaxWidth(),
+        modifier = modifier,
         color = Color.Black.copy(alpha = .4f),
         shape = RoundedCornerShape(4.dp),
     ) {

@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Coffee
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -23,12 +21,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.roblesdotdev.jetexpenses.dashboard.domain.model.Expense
 
 @Composable
 fun ExpenseItem(
-    title: String = "Coffee",
-    description: String = "Buy coffee for the team",
-    amount: Double = 45.00,
+    expense: Expense,
     onClick: () -> Unit = {},
 ) {
     Card(
@@ -57,21 +54,21 @@ fun ExpenseItem(
                         Modifier
                             .padding(12.dp)
                             .size(20.dp),
-                    imageVector = Icons.Default.Coffee,
+                    imageVector = expense.icon,
                     contentDescription = null,
                 )
             }
             Column(
                 modifier = Modifier.weight(1f),
             ) {
-                Text(text = title.uppercase(), fontWeight = FontWeight.Medium)
+                Text(text = expense.title.uppercase(), fontWeight = FontWeight.Medium)
                 Text(
-                    text = description,
+                    text = expense.description,
                     fontSize = 14.sp,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
             }
-            Text(text = "$%.2f".format(amount))
+            Text(text = "$%.2f".format(expense.amount))
         }
     }
 }

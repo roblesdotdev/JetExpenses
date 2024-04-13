@@ -2,9 +2,11 @@ package com.roblesdotdev.jetexpenses.dashboard.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -15,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.roblesdotdev.jetexpenses.dashboard.data.dumbExpensesData
 import com.roblesdotdev.jetexpenses.dashboard.presentation.components.AllExpensesHeader
 import com.roblesdotdev.jetexpenses.dashboard.presentation.components.DashboardTopBar
 import com.roblesdotdev.jetexpenses.dashboard.presentation.components.ExpenseItem
@@ -22,7 +25,11 @@ import com.roblesdotdev.jetexpenses.dashboard.presentation.components.TotalCard
 import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
 
 @Composable
-fun DashboardScreen(onFloatingActionClick: () -> Unit) {
+fun DashboardScreen(
+    state: DashboardState,
+    onFloatingActionClick: () -> Unit,
+    onExpenseClick: (String) -> Unit,
+) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -40,20 +47,34 @@ fun DashboardScreen(onFloatingActionClick: () -> Unit) {
             modifier =
                 Modifier
                     .padding(paddingValues)
-                    .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                    .padding(horizontal = 16.dp)
+                    .padding(bottom = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             item {
-                TotalCard(total = 1200.32)
+                TotalCard(
+                    total = state.total,
+                    modifier =
+                        Modifier
+                            .fillMaxWidth(),
+                )
             }
             item {
-                AllExpensesHeader()
+                AllExpensesHeader(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                )
+            }
+            items(state.items) { expense ->
+                ExpenseItem(
+                    expense,
+                    onClick = { onExpenseClick(expense.id) },
+                )
             }
             item {
-                repeat(15) {
-                    ExpenseItem()
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
+                Spacer(modifier = Modifier.height(32.dp))
             }
         }
     }
@@ -63,6 +84,13 @@ fun DashboardScreen(onFloatingActionClick: () -> Unit) {
 @Composable
 private fun DashboardScreenPreview() {
     JetExpensesTheme {
-        DashboardScreen(onFloatingActionClick = {})
+        DashboardScreen(
+            onFloatingActionClick = {},
+            onExpenseClick = {},
+            state =
+                DashboardState(
+                    items = dumbExpensesData,
+                ),
+        )
     }
 }
