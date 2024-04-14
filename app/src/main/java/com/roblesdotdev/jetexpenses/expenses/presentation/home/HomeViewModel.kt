@@ -22,17 +22,17 @@ class HomeViewModel
         private lateinit var allExpenses: List<Expense>
 
         init {
-            getAllExpenses()
+            updateState()
         }
 
         private fun getAllExpenses() {
             viewModelScope.launch {
                 allExpenses = expensesRepository.getAllExpenses().getOrDefault(emptyList())
-                updateState()
             }
         }
 
         fun updateState() {
+            getAllExpenses()
             _state.update { prevState ->
                 prevState.copy(
                     items = allExpenses,

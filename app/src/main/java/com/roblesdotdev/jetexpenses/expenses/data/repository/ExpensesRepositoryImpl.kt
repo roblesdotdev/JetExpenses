@@ -7,7 +7,7 @@ import java.util.UUID
 
 class ExpensesRepositoryImpl : ExpensesRepository {
     override suspend fun getAllExpenses(): Result<List<Expense>> {
-        return Result.success(dumbExpensesData)
+        return Result.success(dumbExpensesData.sortedByDescending { it.createdAt })
     }
 
     override suspend fun getExpenseById(id: UUID): Result<Expense> {

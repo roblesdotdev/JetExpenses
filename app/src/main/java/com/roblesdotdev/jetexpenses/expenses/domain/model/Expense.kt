@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.House
 import androidx.compose.material.icons.filled.PartyMode
 import androidx.compose.material.icons.filled.ViewCozy
 import androidx.compose.ui.graphics.vector.ImageVector
+import java.time.LocalDateTime
 import java.util.UUID
 
 data class Expense(
@@ -16,6 +17,7 @@ data class Expense(
     val description: String,
     val category: ExpenseCategory,
     val amount: Double,
+    val createdAt: LocalDateTime = LocalDateTime.now(),
 ) {
     val icon = category.icon
     val title = category.name.uppercase()
