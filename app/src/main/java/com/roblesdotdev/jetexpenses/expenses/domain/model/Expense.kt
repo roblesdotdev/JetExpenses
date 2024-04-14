@@ -12,12 +12,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 data class Expense(
     val id: String,
-    val title: String,
     val description: String,
     val category: ExpenseCategory,
     val amount: Double,
 ) {
     val icon = category.icon
+    val title = category.name.uppercase()
 }
 
 enum class ExpenseCategory(val icon: ImageVector) {

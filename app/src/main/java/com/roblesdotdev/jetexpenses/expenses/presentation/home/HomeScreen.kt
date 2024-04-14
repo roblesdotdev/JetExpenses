@@ -1,6 +1,7 @@
 package com.roblesdotdev.jetexpenses.expenses.presentation.home
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,17 +11,19 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.CurrencyLira
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.roblesdotdev.jetexpenses.core.presentation.components.JETopAppBar
 import com.roblesdotdev.jetexpenses.expenses.data.dumbExpensesData
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.AllExpensesHeader
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.ExpenseItem
-import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.HomeTopAppBar
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.TotalCard
 import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
 
@@ -40,7 +43,15 @@ fun HomeScreen(
             }
         },
         topBar = {
-            HomeTopAppBar()
+            JETopAppBar(title = "Dashboard", navigationIcon = {
+                Box(modifier = Modifier.padding(horizontal = 8.dp)) {
+                    Icon(
+                        imageVector = Icons.Default.CurrencyLira,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onBackground,
+                    )
+                }
+            })
         },
     ) { paddingValues ->
         LazyColumn(
