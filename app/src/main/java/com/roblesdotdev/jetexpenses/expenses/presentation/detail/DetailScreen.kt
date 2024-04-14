@@ -93,7 +93,13 @@ fun DetailScreen(
                     },
                 )
             }
-            JEButton(text = stringResource(R.string.save_expense_label), onClick = { /*TODO*/ })
+            JEButton(
+                text = stringResource(R.string.save_expense_label),
+                onClick = {
+                    onEvent(DetailEvent.SaveExpense)
+                    onBack()
+                },
+            )
         }
         if (showBottomSheet) {
             ModalBottomSheet(

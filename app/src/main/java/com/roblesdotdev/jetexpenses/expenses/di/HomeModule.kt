@@ -1,7 +1,7 @@
 package com.roblesdotdev.jetexpenses.expenses.di
 
-import com.roblesdotdev.jetexpenses.expenses.data.repository.ReadExpensesRepositoryImpl
-import com.roblesdotdev.jetexpenses.expenses.domain.repository.ReadExpensesRepository
+import com.roblesdotdev.jetexpenses.expenses.data.repository.ExpensesRepositoryImpl
+import com.roblesdotdev.jetexpenses.expenses.domain.repository.ExpensesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 object HomeModule {
     @Provides
     @Singleton
-    fun providesAccessExpensesRepository(): ReadExpensesRepository {
-        return ReadExpensesRepositoryImpl()
+    fun providesAccessExpensesRepository(): ExpensesRepository {
+        return ExpensesRepositoryImpl()
     }
 }

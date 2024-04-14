@@ -7,9 +7,8 @@ import kotlin.random.Random
 val dumbExpensesData =
     (1..15).map {
         Expense(
-            id = "$it",
             description = "Description for expense $it",
             amount = 1 + Random.nextDouble() * (1200 - 1),
             category = ExpenseCategory.entries.random(),
         )
-    }
+    }.toMutableList()

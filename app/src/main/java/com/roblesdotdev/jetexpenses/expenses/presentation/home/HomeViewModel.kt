@@ -3,7 +3,7 @@ package com.roblesdotdev.jetexpenses.expenses.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.roblesdotdev.jetexpenses.expenses.domain.model.Expense
-import com.roblesdotdev.jetexpenses.expenses.domain.repository.ReadExpensesRepository
+import com.roblesdotdev.jetexpenses.expenses.domain.repository.ExpensesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,35 +15,31 @@ import javax.inject.Inject
 class HomeViewModel
     @Inject
     constructor(
-        private val readExpensesRepository: ReadExpensesRepository,
+        private val expensesRepository: ExpensesRepository,
     ) : ViewModel() {
         private val _state = MutableStateFlow(HomeState())
         val state = _state.asStateFlow()
+        private lateinit var allExpenses: List<Expense>
 
         init {
-            getInitialItems()
+            viewModelScope.launch {
+                allExpenses = expensesRepository.getAllExpenses().getOrDefault(emptyList())
+            }
+            updateState()
         }
 
-        private fun getInitialItems() {
+        private fun getAllExpenses() {
             viewModelScope.launch {
-                val items = readExpensesRepository.getAllExpenses()
-                updateState(items)
+                updateState()
             }
         }
 
-        private fun updateState(items: Result<List<Expense>>) {
-            items.fold(
-                onSuccess = { expenses ->
-                    _state.update { prevState ->
-                        prevState.copy(
-                            items = expenses,
-                            total = expenses.sumOf { it.amount },
-                        )
-                    }
-                },
-                onFailure = {
-                    // TODO
-                },
-            )
+        fun updateState() {
+            _state.update { prevState ->
+                prevState.copy(
+                    items = allExpenses,
+                    total = allExpenses.sumOf { it.amount },
+                )
+            }
         }
     }

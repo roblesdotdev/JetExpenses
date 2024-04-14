@@ -45,6 +45,7 @@ fun NavigationHost(
                 onExpenseClick = {
                     navController.navigate(NavigationRoute.EditCreate.route + "?expenseId=$it")
                 },
+                updateState = homeViewModel::updateState,
                 state = homeState,
             )
         }

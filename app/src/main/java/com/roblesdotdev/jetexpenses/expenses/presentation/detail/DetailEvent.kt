@@ -8,4 +8,6 @@ sealed interface DetailEvent {
     data class DescriptionChanged(val description: String) : DetailEvent
 
     data class CategoryChanged(val category: ExpenseCategory) : DetailEvent
+
+    data object SaveExpense : DetailEvent
 }

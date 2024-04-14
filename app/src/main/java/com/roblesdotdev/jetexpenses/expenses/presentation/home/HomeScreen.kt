@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,13 +27,18 @@ import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.AllExp
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.ExpenseItem
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.TotalCard
 import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
+import java.util.UUID
 
 @Composable
 fun HomeScreen(
     state: HomeState,
     onFloatingActionClick: () -> Unit,
-    onExpenseClick: (String) -> Unit,
+    onExpenseClick: (UUID) -> Unit,
+    updateState: () -> Unit,
 ) {
+    LaunchedEffect(key1 = Unit) {
+        updateState()
+    }
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -98,6 +104,7 @@ private fun HomeScreenPreview() {
         HomeScreen(
             onFloatingActionClick = {},
             onExpenseClick = {},
+            updateState = {},
             state =
                 HomeState(
                     items = dumbExpensesData,

@@ -9,9 +9,10 @@ import androidx.compose.material.icons.filled.House
 import androidx.compose.material.icons.filled.PartyMode
 import androidx.compose.material.icons.filled.ViewCozy
 import androidx.compose.ui.graphics.vector.ImageVector
+import java.util.UUID
 
 data class Expense(
-    val id: String,
+    val id: UUID = UUID.randomUUID(),
     val description: String,
     val category: ExpenseCategory,
     val amount: Double,
