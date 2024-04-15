@@ -5,3 +5,8 @@
 ### State of the project
 
 The app is in dev stages.
+
+### Design
+
+
+![demo](https://github.com/roblesdotdev/JetExpenses/assets/90198035/24b3bd25-24a3-4841-bd7e-6e3dba084420)
