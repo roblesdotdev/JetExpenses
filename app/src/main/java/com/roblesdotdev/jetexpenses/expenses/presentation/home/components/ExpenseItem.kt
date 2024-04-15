@@ -1,18 +1,26 @@
 package com.roblesdotdev.jetexpenses.expenses.presentation.home.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.SwipeToDismissBoxState
+import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -70,5 +78,27 @@ fun ExpenseItem(
             }
             Text(text = "$%.2f".format(expense.amount))
         }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DeleteBackground(swipeDismissState: SwipeToDismissBoxState) {
+    val color =
+        if (swipeDismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart) {
+            MaterialTheme.colorScheme.errorContainer
+        } else {
+            Color.Transparent
+        }
+
+    Box(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(color)
+                .padding(16.dp),
+        contentAlignment = Alignment.CenterEnd,
+    ) {
+        Icon(imageVector = Icons.Default.Delete, contentDescription = null)
     }
 }

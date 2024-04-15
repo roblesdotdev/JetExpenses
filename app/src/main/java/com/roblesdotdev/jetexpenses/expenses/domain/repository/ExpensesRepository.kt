@@ -9,4 +9,6 @@ interface ExpensesRepository {
     suspend fun getExpenseById(id: UUID): Result<Expense>
 
     suspend fun updateExpense(expense: Expense)
+
+    suspend fun deleteExpense(expenseId: UUID)
 }

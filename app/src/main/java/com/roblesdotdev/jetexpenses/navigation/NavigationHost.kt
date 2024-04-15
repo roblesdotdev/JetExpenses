@@ -46,6 +46,7 @@ fun NavigationHost(
                     navController.navigate(NavigationRoute.EditCreate.route + "?expenseId=$it")
                 },
                 updateState = homeViewModel::updateState,
+                onDeleteExpense = homeViewModel::deleteExpense,
                 state = homeState,
             )
         }

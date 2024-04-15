@@ -25,6 +25,7 @@ import com.roblesdotdev.jetexpenses.core.presentation.components.JETopAppBar
 import com.roblesdotdev.jetexpenses.expenses.data.dumbExpensesData
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.AllExpensesHeader
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.ExpenseItem
+import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.SwipeToDeleteContainer
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.TotalCard
 import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
 import java.util.UUID
@@ -34,6 +35,7 @@ fun HomeScreen(
     state: HomeState,
     onFloatingActionClick: () -> Unit,
     onExpenseClick: (UUID) -> Unit,
+    onDeleteExpense: (UUID) -> Unit,
     updateState: () -> Unit,
 ) {
     LaunchedEffect(key1 = Unit) {
@@ -84,11 +86,15 @@ fun HomeScreen(
                             .padding(vertical = 8.dp),
                 )
             }
-            items(state.items) { expense ->
-                ExpenseItem(
-                    expense,
-                    onClick = { onExpenseClick(expense.id) },
-                )
+            items(items = state.items, key = { it.id }) { expense ->
+                SwipeToDeleteContainer(item = expense, onDelete = {
+                    onDeleteExpense(it.id)
+                }) {
+                    ExpenseItem(
+                        expense,
+                        onClick = { onExpenseClick(expense.id) },
+                    )
+                }
             }
             item {
                 Spacer(modifier = Modifier.height(32.dp))
@@ -105,6 +111,7 @@ private fun HomeScreenPreview() {
             onFloatingActionClick = {},
             onExpenseClick = {},
             updateState = {},
+            onDeleteExpense = {},
             state =
                 HomeState(
                     items = dumbExpensesData,

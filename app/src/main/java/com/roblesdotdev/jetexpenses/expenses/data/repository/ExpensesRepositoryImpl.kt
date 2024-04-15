@@ -27,4 +27,11 @@ class ExpensesRepositoryImpl : ExpensesRepository {
             dumbExpensesData[expenseIndex] = expense
         }
     }
+
+    override suspend fun deleteExpense(expenseId: UUID) {
+        val expenseIndex = dumbExpensesData.indexOfFirst { it.id == expenseId }
+        if (expenseIndex != -1) {
+            dumbExpensesData.removeAt(expenseIndex)
+        }
+    }
 }
