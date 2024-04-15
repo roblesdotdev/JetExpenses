@@ -29,11 +29,9 @@ class MainViewModel
 
         private fun setIsReady() {
             viewModelScope.launch {
-                delay(500)
-                withContext(Dispatchers.Main) {
-                    _state.update { prevState ->
-                        prevState.copy(isReady = true)
-                    }
+                delay(500L)
+                _state.update { prevState ->
+                    prevState.copy(isReady = true)
                 }
             }
         }

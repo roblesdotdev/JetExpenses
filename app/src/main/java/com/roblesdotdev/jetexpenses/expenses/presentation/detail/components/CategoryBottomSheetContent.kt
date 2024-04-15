@@ -1,7 +1,6 @@
 package com.roblesdotdev.jetexpenses.expenses.presentation.detail.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -17,13 +16,14 @@ import com.roblesdotdev.jetexpenses.ui.theme.JetExpensesTheme
 @Composable
 fun CategoryBottomSheetContent(
     categories: List<ExpenseCategory>,
+    paddingBottom: Int,
     onSelectCategory: (ExpenseCategory) -> Unit,
 ) {
     LazyVerticalGrid(
         modifier =
             Modifier
-                .navigationBarsPadding()
-                .padding(16.dp),
+                .padding(16.dp)
+                .padding(bottom = paddingBottom.dp),
         columns = GridCells.Fixed(3),
         verticalArrangement = Arrangement.Center,
         horizontalArrangement = Arrangement.Center,
@@ -41,7 +41,11 @@ fun CategoryBottomSheetContent(
 private fun CategoryBottomSheetContentPreview() {
     JetExpensesTheme {
         Surface {
-            CategoryBottomSheetContent(categories = ExpenseCategory.entries, onSelectCategory = {})
+            CategoryBottomSheetContent(
+                categories = ExpenseCategory.entries,
+                paddingBottom = 8,
+                onSelectCategory = {},
+            )
         }
     }
 }

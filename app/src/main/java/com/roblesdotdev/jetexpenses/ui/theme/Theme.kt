@@ -35,6 +35,7 @@ fun JetExpensesTheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = darkScheme.surface.toArgb()
+            window.navigationBarColor = darkScheme.surface.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
