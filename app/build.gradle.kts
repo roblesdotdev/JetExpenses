@@ -90,6 +90,10 @@ dependencies {
     ksp(libs.androidx.hilt.compiler)
     // Splash
     implementation(libs.androidx.core.splashscreen)
+    // Room
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

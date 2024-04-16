@@ -22,8 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.roblesdotdev.jetexpenses.core.presentation.components.JETopAppBar
-import com.roblesdotdev.jetexpenses.expenses.data.dumbExpensesData
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.AllExpensesHeader
+import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.EmptyListHeader
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.ExpenseItem
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.SwipeToDeleteContainer
 import com.roblesdotdev.jetexpenses.expenses.presentation.home.components.TotalCard
@@ -79,12 +79,16 @@ fun HomeScreen(
                 )
             }
             item {
-                AllExpensesHeader(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                )
+                if (state.items.isEmpty()) {
+                    EmptyListHeader(onClick = onFloatingActionClick)
+                } else {
+                    AllExpensesHeader(
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                    )
+                }
             }
             items(items = state.items, key = { it.id }) { expense ->
                 SwipeToDeleteContainer(item = expense, onDelete = {
@@ -114,7 +118,7 @@ private fun HomeScreenPreview() {
             onDeleteExpense = {},
             state =
                 HomeState(
-                    items = dumbExpensesData,
+                    items = emptyList(),
                 ),
         )
     }

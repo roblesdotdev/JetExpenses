@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun AllExpensesHeader(modifier: Modifier = Modifier) {
     Text(
-        text = "All expenses",
+        text = "All Expenses",
         fontSize = 14.sp,
         color = MaterialTheme.colorScheme.onSurface,
         modifier = modifier,

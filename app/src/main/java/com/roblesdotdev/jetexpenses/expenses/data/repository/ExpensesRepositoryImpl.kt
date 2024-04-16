@@ -1,37 +1,37 @@
 package com.roblesdotdev.jetexpenses.expenses.data.repository
 
-import com.roblesdotdev.jetexpenses.expenses.data.dumbExpensesData
+import com.roblesdotdev.jetexpenses.expenses.data.local.ExpenseDao
+import com.roblesdotdev.jetexpenses.expenses.data.local.mapper.toDomain
+import com.roblesdotdev.jetexpenses.expenses.data.local.mapper.toEntity
 import com.roblesdotdev.jetexpenses.expenses.domain.model.Expense
 import com.roblesdotdev.jetexpenses.expenses.domain.repository.ExpensesRepository
 import java.util.UUID
 
-class ExpensesRepositoryImpl : ExpensesRepository {
+class ExpensesRepositoryImpl(
+    private val dao: ExpenseDao,
+) : ExpensesRepository {
     override suspend fun getAllExpenses(): Result<List<Expense>> {
-        return Result.success(dumbExpensesData.sortedByDescending { it.createdAt })
+        val expenses =
+            dao.getAllExpenses().map {
+                it.toDomain()
+            }
+        return Result.success(expenses)
     }
 
     override suspend fun getExpenseById(id: UUID): Result<Expense> {
-        val res = dumbExpensesData.indexOfFirst { it.id == id }
-        return if (res == -1) {
+        return try {
+            val expense = dao.getExpenseById(id)
+            Result.success(expense.toDomain())
+        } catch (e: Exception) {
             Result.failure(Exception("Not found expense with id $id"))
-        } else {
-            Result.success(dumbExpensesData[res])
         }
     }
 
     override suspend fun updateExpense(expense: Expense) {
-        val expenseIndex = dumbExpensesData.indexOfFirst { it.id == expense.id }
-        if (expenseIndex == -1) {
-            dumbExpensesData.add(expense)
-        } else {
-            dumbExpensesData[expenseIndex] = expense
-        }
+        dao.upsertExpense(expense.toEntity())
     }
 
     override suspend fun deleteExpense(expenseId: UUID) {
-        val expenseIndex = dumbExpensesData.indexOfFirst { it.id == expenseId }
-        if (expenseIndex != -1) {
-            dumbExpensesData.removeAt(expenseIndex)
-        }
+        dao.deleteExpense(expenseId)
     }
 }
