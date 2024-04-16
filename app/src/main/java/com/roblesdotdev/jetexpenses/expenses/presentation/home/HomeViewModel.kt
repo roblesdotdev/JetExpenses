@@ -26,7 +26,7 @@ class HomeViewModel
 
         fun updateState() {
             viewModelScope.launch {
-                val allExpenses = expensesRepository.getAllExpenses().getOrDefault(emptyList())
+                val allExpenses = expensesRepository.getLatestExpenses().getOrDefault(emptyList())
                 _state.update { prevState ->
                     prevState.copy(
                         items = allExpenses,

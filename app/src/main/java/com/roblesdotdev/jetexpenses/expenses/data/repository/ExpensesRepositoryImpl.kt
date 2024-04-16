@@ -10,9 +10,9 @@ import java.util.UUID
 class ExpensesRepositoryImpl(
     private val dao: ExpenseDao,
 ) : ExpensesRepository {
-    override suspend fun getAllExpenses(): Result<List<Expense>> {
+    override suspend fun getLatestExpenses(): Result<List<Expense>> {
         val expenses =
-            dao.getAllExpenses().map {
+            dao.getLatestExpenses().map {
                 it.toDomain()
             }
         return Result.success(expenses)

@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
     private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         installSplashScreen().apply {
@@ -27,6 +26,8 @@ class MainActivity : ComponentActivity() {
                 !mainViewModel.state.value.isReady
             }
         }
+
+        super.onCreate(savedInstanceState)
 
         setContent {
             JetExpensesTheme {

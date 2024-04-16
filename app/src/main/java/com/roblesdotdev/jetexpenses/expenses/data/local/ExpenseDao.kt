@@ -11,8 +11,8 @@ interface ExpenseDao {
     @Upsert
     suspend fun upsertExpense(expense: ExpenseEntity)
 
-    @Query("SELECT * FROM expenses ORDER BY createdAt ASC")
-    suspend fun getAllExpenses(): List<ExpenseEntity>
+    @Query("SELECT * FROM expenses ORDER BY createdAt DESC LIMIT 15")
+    suspend fun getLatestExpenses(): List<ExpenseEntity>
 
     @Query("SELECT * FROM expenses WHERE id == :id")
     suspend fun getExpenseById(id: UUID): ExpenseEntity
